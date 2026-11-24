@@ -28,7 +28,8 @@ def main():
         if key_lst[pg.K_LEFT]:
             kk_rct.move_ip((-1, 0))
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((1, 0))
+            kk_rct.move_ip((2, 0)) #演習1-2:右矢印キーを押している場合は右に進む
+        kk_rct.move_ip((-1, 0)) # 演習1-1:何も押していない場合背景画像と同じ速度で左に流れる
 
         x = tmr%3200 # 練習5:背景画像を動かすための変数 # 練習9:背景画像をループ
 

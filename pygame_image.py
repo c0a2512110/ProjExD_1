@@ -15,21 +15,25 @@ def main():
     bg_img2 = pg.transform.flip(bg_img, True, False) # 練習8:2枚目の背景画像を反転
     kk_rct = kk_img.get_rect() # 練習10-1:こうかとんRectの取得
     kk_rct.center = 300, 200 # 練習10-2:こうかとん初期座標の設定
+
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         key_lst = pg.key.get_pressed() # 練習10-3:全キー状態の取得
+
+        kk_move_yoko = 0 # 演習2:横に動く値を設定
+        kk_move_tate = 0 # 演習2:縦に動く値を設定
         if key_lst[pg.K_UP]: # 練習10-4 押下キーに応じた移動量でmove_ip((横, 縦))する
-            kk_rct.move_ip((0, -1))
+            kk_move_tate = -1
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0, 1))
+            kk_move_tate = 1
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1, 0))
+            kk_move_yoko = -1
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((2, 0)) #演習1-2:右矢印キーを押している場合は右に進む
-        kk_rct.move_ip((-1, 0)) # 演習1-1:何も押していない場合背景画像と同じ速度で左に流れる
+            kk_move_yoko = 2 # 演習1-2:右矢印キーを押している場合は右に進む
+        kk_rct.move_ip((-1+kk_move_yoko, 0+kk_move_tate)) # 演習1-1:何も押していない場合背景画像と同じ速度で左に流れる # 演習2:move_ipメソッドを1回だけにする
 
         x = tmr%3200 # 練習5:背景画像を動かすための変数 # 練習9:背景画像をループ
 
